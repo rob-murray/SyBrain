@@ -5,15 +5,16 @@ import pandas as pd
 from time import sleep
 from utils import bitmex_http_com as bitmex
 from utils.bitmex_websocket_com import BitMEXWebsocket
+import os
 
 #########################################
 
-API_path_bmex_test = "wss://www.bitmex.com/realtime"
-API_key_bmex_test = "key"
-API_secret_bmex_test = "secret"
+API_path_bmex_test = os.getenv("API_WS_URL", "wss://www.bitmex.com/realtime")
+API_key_bmex_test = os.getenv("API_KEY_ID")
+API_secret_bmex_test = os.getenv("API_KEY_SECRET")
 
-instrument_bmex = "XBTUSD"  # XBTUSD or ETHUSD
-pos_size = 1  # Number of contracts traded
+instrument_bmex = os.getenv("MARKET_SYMBOL", "XBTUSD")  # XBTUSD or ETHUSD
+pos_size = int(os.getenv("CONTRACT_SIZE", 1))  # Number of contracts traded
 
 #########################################
 
